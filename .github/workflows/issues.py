@@ -20,7 +20,8 @@ from github import Github
 
 
 ROOT_DIR = os.path.realpath(
-    os.path.join(os.path.dirname(__file__), '..', '..'))
+    os.path.join(os.path.dirname(__file__), '..', '..')
+)
 SCRIPTS_DIR = os.path.join(ROOT_DIR, 'scripts')
 
 
@@ -30,23 +31,78 @@ SCRIPTS_DIR = os.path.join(ROOT_DIR, 'scripts')
 LABELS_MAP = {
     # platforms
     "linux": [
-        "linux", "ubuntu", "redhat", "mint", "centos", "red hat", "archlinux",
-        "debian", "alpine", "gentoo", "fedora", "slackware", "suse", "RHEL",
-        "opensuse", "manylinux", "apt ", "apt-", "rpm", "yum", "kali",
-        "/sys/class", "/proc/net", "/proc/disk", "/proc/smaps",
+        "/proc/disk",
+        "/proc/net",
+        "/proc/smaps",
         "/proc/vmstat",
+        "/sys/class",
+        "alpine",
+        "apt ",
+        "apt-",
+        "archlinux",
+        "centos",
+        "debian",
+        "fedora",
+        "gentoo",
+        "kali",
+        "linux",
+        "manylinux",
+        "mint",
+        "opensuse",
+        "red hat",
+        "redhat",
+        "RHEL",
+        "rpm",
+        "slackware",
+        "suse",
+        "ubuntu",
+        "yum",
     ],
     "windows": [
-        "windows", "win32", "WinError", "WindowsError", "win10", "win7",
-        "win ", "mingw", "msys", "studio", "microsoft", "make.bat",
-        "CloseHandle", "GetLastError", "NtQuery", "DLL", "MSVC", "TCHAR",
-        "WCHAR", ".bat", "OpenProcess", "TerminateProcess", "appveyor",
-        "windows error", "NtWow64", "NTSTATUS", "Visual Studio",
+        ".bat",
+        "appveyor",
+        "CloseHandle",
+        "DLL",
+        "GetLastError",
+        "make.bat",
+        "microsoft",
+        "mingw",
+        "MSVC",
+        "msys",
+        "NtQuery",
+        "NTSTATUS",
+        "NtWow64",
+        "OpenProcess",
+        "studio",
+        "TCHAR",
+        "TerminateProcess",
+        "Visual Studio",
+        "WCHAR",
+        "win ",
+        "win10",
+        "win32",
+        "win7",
+        "windows error",
+        "windows",
+        "WindowsError",
+        "WinError",
     ],
     "macos": [
-        "macos", "mac ", "osx", "os x", "mojave", "sierra", "capitan",
-        "yosemite", "catalina", "mojave", "big sur", "xcode", "darwin",
-        "dylib", "m1",
+        "big sur",
+        "capitan",
+        "catalina",
+        "darwin",
+        "dylib",
+        "m1",
+        "mac ",
+        "macos",
+        "mojave",
+        "mojave",
+        "os x",
+        "osx",
+        "sierra",
+        "xcode",
+        "yosemite",
     ],
     "aix": ["aix"],
     "cygwin": ["cygwin"],
@@ -56,8 +112,12 @@ LABELS_MAP = {
     "sunos": ["sunos", "solaris"],
     "wsl": ["wsl"],
     "unix": [
-        "psposix", "_psutil_posix", "waitpid", "statvfs", "/dev/tty",
         "/dev/pts",
+        "/dev/tty",
+        "_psutil_posix",
+        "psposix",
+        "statvfs",
+        "waitpid",
     ],
     "pypy": ["pypy"],
     # types
@@ -67,38 +127,82 @@ LABELS_MAP = {
     "performance": ["performance", "speedup", "speed up", "slow", "fast"],
     "wheels": ["wheel", "wheels"],
     "scripts": [
-        "example script", "examples script", "example dir", "scripts/",
+        "example dir",
+        "example script",
+        "examples script",
+        "scripts/",
     ],
     # bug
     "bug": [
-        "fail", "can't execute", "can't install", "cannot execute",
-        "cannot install", "install error", "crash", "critical",
+        "can't execute",
+        "can't install",
+        "cannot execute",
+        "cannot install",
+        "crash",
+        "critical",
+        "fail",
+        "install error",
     ],
     # doc
     "doc": [
-        "doc ", "document ", "documentation", "readthedocs", "pythonhosted",
-        "HISTORY", "README", "dev guide", "devguide", "sphinx", "docfix",
+        "dev guide",
+        "devguide",
+        "doc ",
+        "docfix",
+        "document ",
+        "documentation",
+        "HISTORY",
         "index.rst",
+        "pythonhosted",
+        "README",
+        "readthedocs",
+        "sphinx",
     ],
     # tests
     "tests": [
-        " test ", "tests", "travis", "coverage", "cirrus", "appveyor",
-        "continuous integration", "unittest", "pytest", "unit test",
+        " test ",
+        "appveyor",
+        "cirrus",
+        "continuous integration",
+        "coverage",
+        "pytest",
+        "tests",
+        "travis",
+        "unit test",
+        "unittest",
     ],
     # critical errors
     "priority-high": [
-        "WinError", "WindowsError", "RuntimeError", "ZeroDivisionError",
-        "SystemError", "MemoryError", "core dumped",
-        "segfault", "segmentation fault",
+        "core dumped",
+        "MemoryError",
+        "RuntimeError",
+        "segfault",
+        "segmentation fault",
+        "SystemError",
+        "WindowsError",
+        "WinError",
+        "ZeroDivisionError",
     ],
 }
 
 LABELS_MAP['scripts'].extend(
-    [x for x in os.listdir(SCRIPTS_DIR) if x.endswith('.py')])
+    [x for x in os.listdir(SCRIPTS_DIR) if x.endswith('.py')]
+)
 
 OS_LABELS = [
-    "linux", "windows", "macos", "freebsd", "openbsd", "netbsd", "openbsd",
-    "bsd", "sunos", "unix", "wsl", "aix", "cygwin",
+    "aix",
+    "bsd",
+    "cygwin",
+    "freebsd",
+    "linux",
+    "macos",
+    "netbsd",
+    "openbsd",
+    "openbsd",
+    "sunos",
+    "unix",
+    "windows",
+    "wsl",
 ]
 
 ILLOGICAL_PAIRS = [
@@ -246,10 +350,12 @@ def add_labels_from_new_body(issue, text):
     # add bug/enhancement label
     log("search for 'Bug fix: y/n' line")
     r = re.search(r"\* Bug fix:.*?\n", text)
-    if is_pr(issue) and \
-            r is not None and \
-            not has_label(issue, "bug") and \
-            not has_label(issue, "enhancement"):
+    if (
+        is_pr(issue)
+        and r is not None
+        and not has_label(issue, "bug")
+        and not has_label(issue, "enhancement")
+    ):
         log("found")
         s = r.group(0).lower()
         if 'yes' in s:
@@ -291,10 +397,12 @@ def on_new_issue(issue):
         return text in issue.title.lower() or text in issue.body.lower()
 
     log("searching for missing Python.h")
-    if has_text("missing python.h") or \
-            has_text("python.h: no such file or directory") or \
-            "#include<Python.h>\n^~~~" in issue.body.replace(' ', '') or \
-            "#include<Python.h>\r\n^~~~" in issue.body.replace(' ', ''):
+    if (
+        has_text("missing python.h")
+        or has_text("python.h: no such file or directory")
+        or "#include<Python.h>\n^~~~" in issue.body.replace(' ', '')
+        or "#include<Python.h>\r\n^~~~" in issue.body.replace(' ', '')
+    ):
         log("found")
         issue.create_comment(REPLY_MISSING_PYTHON_HEADERS)
         issue.edit(state='closed')
