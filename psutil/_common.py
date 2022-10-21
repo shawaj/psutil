@@ -46,6 +46,7 @@ PY3 = sys.version_info[0] == 3
 PSUTIL_DEBUG = bool(os.getenv('PSUTIL_DEBUG', 0))
 _DEFAULT = object()
 
+# fmt: off
 __all__ = [
     # OS constants
     'FREEBSD', 'BSD', 'LINUX', 'NETBSD', 'OPENBSD', 'MACOS', 'OSX', 'POSIX',
@@ -76,6 +77,7 @@ __all__ = [
     # shell utils
     'hilite', 'term_supports_colors', 'print_color',
 ]
+# fmt: on
 
 
 # ===================================================================

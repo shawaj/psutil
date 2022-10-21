@@ -77,6 +77,7 @@ if POSIX:
     from psutil._psposix import wait_pid
 
 
+# fmt: off
 __all__ = [
     # constants
     'APPVEYOR', 'DEVNULL', 'GLOBAL_TIMEOUT', 'TOLERANCE_SYS_MEM', 'NO_RETRIES',
@@ -115,6 +116,7 @@ __all__ = [
     # others
     'warn', 'copyload_shared_lib', 'is_namedtuple',
 ]
+# fmt: on
 
 
 # ===================================================================
