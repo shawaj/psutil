@@ -11,6 +11,7 @@ TSCRIPT = psutil/tests/runner.py
 DEPS = \
 	autoflake \
 	autopep8 \
+	black \
 	check-manifest \
 	concurrencytest \
 	coverage \
@@ -197,10 +198,14 @@ flake8:  ## Run flake8 linter.
 isort:  ## Run isort linter.
 	@git ls-files '*.py' | xargs $(PYTHON) -m isort --check-only
 
+black:  ## Run black linter.
+	@git ls-files '*.py' | xargs $(PYTHON) -m black --config=pyproject.toml --check --safe
+
 c-linter:  ## Run C linter.
 	@git ls-files '*.c' '*.h' | xargs $(PYTHON) scripts/internal/clinter.py
 
 lint-all:  ## Run all linters
+	${MAKE} black
 	${MAKE} flake8
 	${MAKE} isort
 	${MAKE} c-linter
@@ -208,6 +213,9 @@ lint-all:  ## Run all linters
 # ===================================================================
 # Fixers
 # ===================================================================
+
+fix-black:  ## Run black
+	git ls-files '*.py' | xargs $(PYTHON) -m black --config=pyproject.toml
 
 fix-flake8:  ## Run autopep8, fix some Python flake8 / pep8 issues.
 	@git ls-files '*.py' | xargs $(PYTHON) -m autopep8 --in-place --jobs 0 --global-config=.flake8
@@ -217,6 +225,7 @@ fix-imports:  ## Fix imports with isort.
 	@git ls-files '*.py' | xargs $(PYTHON) -m isort
 
 fix-all:  ## Run all code fixers.
+	${MAKE} fix-black
 	${MAKE} fix-flake8
 	${MAKE} fix-imports
 
